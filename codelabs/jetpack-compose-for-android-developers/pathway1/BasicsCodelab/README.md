@@ -1,26 +1,8 @@
-# Jetpack Compose Basics Codelab
+# Jetpack Compose Basic Codelab
+Week1 Jetpack Compose Basic 코드랩은 새 프로젝트를 만드는 것으로 시작합니다.
 
-This folder contains the source code for the solution of the
-[Jetpack Compose Basics codelab](https://developer.android.com/codelabs/jetpack-compose-basics).
+## 작업 전 필수 확인
+Basics에 올려둔 프로젝트는 new project 입니다. 바로 이 프로젝트 위에서 코드랩을 시작하시면 됩니다. 
 
-In this codelab you will go hands-on and learn the fundamentals of declarative UI and
-[Jetpack Compose](https://developer.android.com/jetpack/compose), working with state, layouts
-and theming.
-
-## License
-
-```
-Copyright 2021 The Android Open Source Project
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+## 작업 후
+Git 명령어 또는 [SourceTree](https://www.sourcetreeapp.com/), [GitKraken](https://www.gitkraken.com/) 등을 이용해 작업 결과를 push 해주세요.
