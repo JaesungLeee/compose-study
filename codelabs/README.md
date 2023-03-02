@@ -1,4 +1,4 @@
-# ComposeStudy
+# Codelabs
 ### Resources
 * [개발자 문서](https://developer.android.com/jetpack/compose/documentation)
 * [Jetpack Compose for Android Developers](https://developer.android.com/courses/jetpack-compose/course)
