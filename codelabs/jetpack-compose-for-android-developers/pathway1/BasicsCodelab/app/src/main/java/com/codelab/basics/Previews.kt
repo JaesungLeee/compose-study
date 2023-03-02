@@ -1,6 +1,8 @@
 package com.codelab.basics
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.codelab.basics.ui.theme.BasicsCodelabTheme
 
@@ -21,11 +23,11 @@ fun DefaultPreview() {
 @Composable
 fun ColumnPreview() {
     BasicsCodelabTheme {
-        ColumnMyApp()
+        ColumnMyApp(modifier = Modifier.fillMaxSize())
     }
 }
 
-@Preview(showBackground = true, name = "Round Surface")
+@Preview(showBackground = true)
 @Composable
 fun CircularGreetingPreview() {
     BasicsCodelabTheme {
@@ -33,10 +35,26 @@ fun CircularGreetingPreview() {
     }
 }
 
-@Preview(showBackground = true, name = "Column Greeting")
+@Preview(showBackground = true)
 @Composable
 fun ColumnGreetingPreview() {
     BasicsCodelabTheme {
         ColumnGreeting(name = "Android")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OnboardingPreview() {
+    BasicsCodelabTheme {
+        OnboardingScreen(onContinueClicked = {})
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+fun GreetingsPreview() {
+    BasicsCodelabTheme {
+        Greetings()
     }
 }
