@@ -40,8 +40,31 @@ fun MyApp(modifier: Modifier = Modifier) {
     }
 }
 
+/**
+ * State Hoisting은 상태는 아래로, 이벤트는 위로에 기반
+ * 자식 Composable의 이벤트를 수신해 부모 Composable에 전달한다.
+ * 이벤트 전달은 람다를 기반으로 전달한다.
+ * 부모 Composable은 잣기 Composable에게 받은 이벤트를 처리하고 상태를 업데이트하여 자기 자신과 자식 Composable을 Recomposition함
+ */
 @Composable
-fun ColumnMyApp(
+fun ColumnMyApp(modifier: Modifier = Modifier) {
+    var shouldShowOnboarding by remember { mutableStateOf(true) }
+
+    Surface(modifier = modifier) {
+        if (shouldShowOnboarding) {
+            OnboardingScreen(
+                onContinueClicked = {
+                    shouldShowOnboarding = false  // State 업데이트 및 Recomposition 발생
+                }
+            )
+        } else {
+            Greetings()
+        }
+    }
+}
+
+@Composable
+fun Greetings(
     modifier: Modifier = Modifier,
     names: List<String> = listOf("World", "Compose")
 ) {
