@@ -17,10 +17,26 @@ fun DefaultPreview() {
     }
 }
 
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+fun ColumnPreview() {
+    BasicsCodelabTheme {
+        ColumnMyApp()
+    }
+}
+
 @Preview(showBackground = true, name = "Round Surface")
 @Composable
 fun CircularGreetingPreview() {
     BasicsCodelabTheme {
         CircularGreeting(name = "Android")
+    }
+}
+
+@Preview(showBackground = true, name = "Column Greeting")
+@Composable
+fun ColumnGreetingPreview() {
+    BasicsCodelabTheme {
+        ColumnGreeting(name = "Android")
     }
 }
