@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
  * Top-Level 컴포저블의 파라미터로 modifier를 전달해 재사용성, 확장성 증가
  */
 @Composable
-private fun MyApp(modifier: Modifier = Modifier) {
+fun MyApp(modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier,
         color = MaterialTheme.colors.background
@@ -42,7 +42,7 @@ private fun MyApp(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun Greeting(name: String) {
+fun Greeting(name: String) {
     Surface(color = MaterialTheme.colors.primary) {
         Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
     }
@@ -68,18 +68,3 @@ fun CircularGreeting(name: String) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BasicsCodelabTheme {
-        MyApp()
-    }
-}
-
-@Preview(showBackground = true, name = "Round Surface")
-@Composable
-fun CircularGreetingPreview() {
-    BasicsCodelabTheme {
-        CircularGreeting(name = "Android")
-    }
-}
