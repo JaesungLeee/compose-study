@@ -1,6 +1,7 @@
 package com.codelab.basics
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -11,6 +12,7 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -48,7 +50,9 @@ fun MyApp(modifier: Modifier = Modifier) {
  */
 @Composable
 fun ColumnMyApp(modifier: Modifier = Modifier) {
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
+    Log.d("A", "Recomposition")
+    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
+    Log.d("AA", shouldShowOnboarding.toString())
 
     Surface(modifier = modifier) {
         if (shouldShowOnboarding) {
@@ -58,7 +62,7 @@ fun ColumnMyApp(modifier: Modifier = Modifier) {
                 }
             )
         } else {
-            Greetings()
+            LazyColumnGreetings()
         }
     }
 }
