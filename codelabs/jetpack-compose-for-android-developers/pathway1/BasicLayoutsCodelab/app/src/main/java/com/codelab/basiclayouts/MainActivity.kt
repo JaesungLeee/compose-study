@@ -21,12 +21,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
+import com.google.android.material.textfield.TextInputEditText
+import kotlin.math.min
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +43,34 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Step: Search bar - Modifiers
+/**
+ * Step4. Search bar - Modifiers
+ * modifier는 확장성과 재사용성을 위해 상위 Composable로 부터 parameter로 넘겨야 한다.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier  // modifier를 parameter로 받아 TextField에 전달하는 모범 사례
 ) {
-    // Implement composable here
+    TextField(
+        value = "",
+        onValueChange = {},
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null
+            )
+        },
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        placeholder = {
+              Text(text = stringResource(R.string.placeholder_search))
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(56.dp)  // min = 56.dp, max = Dp.Unspecified - 최소 56dp 차지(고정 높이는 아님)
+    )
 }
 
 // Step: Align your body - Alignment
