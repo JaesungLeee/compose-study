@@ -1,5 +1,6 @@
 package com.codelab.basics
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,6 +17,14 @@ import com.codelab.basics.ui.theme.BasicsCodelabTheme
 fun DefaultPreview() {
     BasicsCodelabTheme {
         MyApp()
+    }
+}
+
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun DefaultDarkPreview() {
+    BasicsCodelabTheme {
+        LazyColumnGreetings()
     }
 }
 
