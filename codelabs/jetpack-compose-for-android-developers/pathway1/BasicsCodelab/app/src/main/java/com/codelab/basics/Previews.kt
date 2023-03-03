@@ -58,3 +58,11 @@ fun GreetingsPreview() {
         Greetings()
     }
 }
+
+@Preview(showBackground = true, )
+@Composable
+fun LazyColumnPreview() {
+    BasicsCodelabTheme {
+        LazyColumnGreetings()
+    }
+}
