@@ -35,6 +35,8 @@ fun AlignYourBodyElementPreview() {
 fun FavoriteCollectionCardPreview() {
     MySootheTheme {
         FavoriteCollectionCard(
+            drawableId = R.drawable.fc2_nature_meditations,
+            stringId = R.string.fc2_nature_meditations,
             modifier = Modifier.padding(8.dp)
         )
     }

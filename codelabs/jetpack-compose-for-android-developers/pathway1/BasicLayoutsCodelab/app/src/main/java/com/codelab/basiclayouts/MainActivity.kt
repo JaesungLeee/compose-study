@@ -106,12 +106,36 @@ fun AlignYourBodyElement(
     }
 }
 
-// Step: Favorite collection card - Material Surface
+/**
+ * Step6. Favorite collection card - Material Surface
+ */
 @Composable
 fun FavoriteCollectionCard(
+    @DrawableRes drawableId: Int,
+    @StringRes stringId: Int,
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    Surface(
+        modifier = modifier,
+        shape = MaterialTheme.shapes.small
+    ) {
+        Row(
+            modifier = Modifier.width(192.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = drawableId),
+                contentDescription = null,
+                modifier = Modifier.size(56.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = stringResource(id = stringId),
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
+    }
 }
 
 // Step: Align your body row - Arrangements
