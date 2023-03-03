@@ -1,5 +1,7 @@
 package com.codelab.basics
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -68,20 +70,36 @@ fun CircularGreeting(name: String) {
 @Composable
 fun ColumnGreeting(name: String) {
 
-//    val expanded = remember { mutableStateOf(false) } // should use with .value
-
+    // val expanded = remember { mutableStateOf(false) } // should use with .value
     var expanded by rememberSaveable { mutableStateOf(false) }
-    val extraPadding = if (expanded) 48.dp else 0.dp
+
+    // val extraPadding = if (expanded) 48.dp else 0.dp  // Not Animated
+    val extraPadding by animateDpAsState(
+        targetValue = if (expanded) 48.dp else 0.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
+
+    val backgroundColor by animateColorAsState(
+        targetValue = if (expanded) Color.Blue else Color.LightGray,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
 
     Surface(
-        color = MaterialTheme.colors.primary,
+        color = backgroundColor,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
         Row(modifier = Modifier.padding(24.dp)) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(bottom = extraPadding)
+                    // coerceAtLeast : padding이 음수가 될 수 있기 때문에 음수일 경우 0.dp로 맞춰줌
+                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
                 Text(text = name)
