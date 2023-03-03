@@ -48,7 +48,7 @@ fun CircularGreetingPreview() {
 @Composable
 fun ColumnGreetingPreview() {
     BasicsCodelabTheme {
-        ColumnGreeting(name = "Android")
+        GreetingCard(name = "Android")
     }
 }
 

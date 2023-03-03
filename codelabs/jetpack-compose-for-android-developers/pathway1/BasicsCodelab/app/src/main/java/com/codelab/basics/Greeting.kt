@@ -9,14 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -27,7 +29,7 @@ import androidx.compose.ui.unit.dp
  */
 @Composable
 fun Greeting(name: String) {
-    Surface(color = MaterialTheme.colors.primary) {
+    Surface(color = MaterialTheme.colorScheme.primary) {
         Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
     }
 }
@@ -39,7 +41,7 @@ fun Greetings(
 ) {
     Column(modifier = modifier.padding(vertical = 4.dp)) {
         for (name in names) {
-            ColumnGreeting(name = name)
+            GreetingCard(name = name)
         }
     }
 }
@@ -55,11 +57,39 @@ fun CircularGreeting(name: String) {
         modifier = Modifier.padding(8.dp),
         border = BorderStroke(2.dp, Color.Red),
         contentColor = Color.Blue,
-        elevation = 8.dp,
+        tonalElevation = 8.dp,
         shape = CircleShape,
         color = Color.Green
     ) {
         Text(text = "Hello $name", modifier = Modifier.padding(8.dp))
+    }
+}
+
+
+/**
+ * RecyclerView와 동일하게 동작하지만 View를 재활용하지 않음
+ */
+@Composable
+fun LazyColumnGreetings(
+    modifier: Modifier = Modifier,
+    names: List<String> = List(1000) { "$it" }
+) {
+    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+        items(items = names) { name ->
+            GreetingCard(name = name)
+        }
+    }
+}
+
+@Composable
+fun GreetingCard(name: String) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        ),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        CardContent(name)
     }
 }
 
@@ -69,7 +99,7 @@ fun CircularGreeting(name: String) {
  * remember와 함께 사용해야 Recomposition이 발생해도 State가 재설정되지 않고 유지할 수 있게 됨
  */
 @Composable
-fun ColumnGreeting(name: String) {
+fun CardContent(name: String) {
 
     // val expanded = remember { mutableStateOf(false) } // should use with .value
     var expanded by rememberSaveable { mutableStateOf(false) }
@@ -92,46 +122,45 @@ fun ColumnGreeting(name: String) {
     )
 
     Surface(
-        color = MaterialTheme.colors.primary,
+        color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Row(modifier = Modifier.padding(24.dp)) {
+        Row(modifier = Modifier.padding(12.dp)) {
             Column(
                 modifier = Modifier
                     .weight(1f)
                     // coerceAtLeast : padding이 음수가 될 수 있기 때문에 음수일 경우 0.dp로 맞춰줌
-                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+                    // .padding(bottom = extraPadding.coerceAtLeast(0.dp))
+                    .padding(12.dp)
             ) {
                 Text(text = "Hello,")
                 Text(
                     text = name,
-                    style = MaterialTheme.typography.h3.copy(
+                    style = MaterialTheme.typography.headlineMedium.copy(
                         fontWeight = FontWeight.ExtraBold
                     )
                 )
+                if (expanded) {
+                    Text(
+                        text = ("Composem ipsum color sit lazy, " +
+                                "padding theme elit, sed do bouncy. ").repeat(4)
+                    )
+                }
             }
-            OutlinedButton(
+            IconButton(
                 onClick = {
                     expanded = !expanded
                 }
             ) {
-                Text(text = if (expanded) "Show less" else "Show more")
+                Icon(
+                    imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = if (expanded) {
+                        stringResource(R.string.show_less)
+                    } else {
+                        stringResource(R.string.show_more)
+                    }
+                )
             }
-        }
-    }
-}
-
-/**
- * RecyclerView와 동일하게 동작하지만 View를 재활용하지 않음
- */
-@Composable
-fun LazyColumnGreetings(
-    modifier: Modifier = Modifier,
-    names: List<String> = List(1000) { "$it" }
-) {
-    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
-        items(items = names) { name ->
-            ColumnGreeting(name = name)
         }
     }
 }
