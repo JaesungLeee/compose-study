@@ -24,3 +24,14 @@ fun WellnessScreenPreview() {
         WellnessScreen()
     }
 }
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+fun WellnessTaskItemPreview() {
+    BasicStateCodelabTheme {
+        WellnessTaskItem(
+            taskName = "This is Task",
+            onClose = {}
+        )
+    }
+}
