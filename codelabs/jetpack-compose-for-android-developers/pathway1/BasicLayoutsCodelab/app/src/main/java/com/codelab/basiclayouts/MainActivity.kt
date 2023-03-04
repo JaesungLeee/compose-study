@@ -109,7 +109,7 @@ fun AlignYourBodyElement(
         )
         Text(
             text = stringResource(id = stringId),
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.paddingFromBaseline(
                 top = 24.dp, bottom = 8.dp
             ) // Spacer로 margin을 줄 수도 있다.
@@ -142,7 +142,7 @@ fun FavoriteCollectionCard(
             )
             Text(
                 text = stringResource(id = stringId),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
@@ -201,7 +201,7 @@ fun HomeSection(
     Column(modifier = modifier) {
         Text(
             text = stringResource(id = title),
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
                 .padding(horizontal = 16.dp)  // Modifier Chaining 공부 해봐야할듯
@@ -267,10 +267,17 @@ fun SootheBottomNavigation(modifier: Modifier = Modifier) {
     }
 }
 
-// Step: MySoothe App - Scaffold
+/**
+ * Step12. MySoothe App - Scaffold
+ */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MySootheApp() {
-    // Implement composable here
+    MaterialTheme {
+        Scaffold(bottomBar = { SootheBottomNavigation() }) { padding ->
+            HomeScreen(modifier = Modifier.padding(padding))
+        }
+    }
 }
 
 private val alignYourBodyData = listOf(
