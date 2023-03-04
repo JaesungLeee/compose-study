@@ -29,9 +29,14 @@ fun WellnessScreenPreview() {
 @Composable
 fun WellnessTaskItemPreview() {
     BasicStateCodelabTheme {
-        WellnessTaskItem(
-            taskName = "This is Task",
-            onClose = {}
-        )
+        WellnessTaskItem(taskName = "This is task")
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320, heightDp = 640)
+@Composable
+fun WellnessTaskListPreview() {
+    BasicStateCodelabTheme {
+        WellnessTaskList()
     }
 }
