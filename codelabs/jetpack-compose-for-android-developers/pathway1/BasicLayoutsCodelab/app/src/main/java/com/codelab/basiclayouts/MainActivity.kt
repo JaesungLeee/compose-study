@@ -28,7 +28,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -196,16 +198,35 @@ fun HomeSection(
         Text(
             text = stringResource(id = title),
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.paddingFromBaseline(top = 40.dp, bottom = 8.dp).padding(horizontal = 16.dp)  // Modifier Chaining 공부 해봐야할듯
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)  // Modifier Chaining 공부 해봐야할듯
         )
         content()
     }
 }
 
-// Step: Home screen - Scrolling
+/**
+ * Step10. Home screen - Scrolling
+ * 스크롤이 필요할 경우 스크롤 상태를 기억하기 위해 rememberScrollState API 사용 가능
+ */
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    // Implement composable here
+    Column(
+        modifier = modifier
+            .verticalScroll(state = rememberScrollState())
+            .padding(vertical = 16.dp)
+    ) {
+        // Spacer(modifier = Modifier.height(16.dp))  // Margin이라고 이해할 수 있을 듯
+        SearchBar(modifier = Modifier.padding(16.dp))
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+        HomeSection(title = R.string.favorite_collections) {
+            FavoriteCollectionsGrid()
+        }
+        // Spacer(modifier = Modifier.height(16.dp))
+    }
 }
 
 // Step: Bottom navigation - Material
