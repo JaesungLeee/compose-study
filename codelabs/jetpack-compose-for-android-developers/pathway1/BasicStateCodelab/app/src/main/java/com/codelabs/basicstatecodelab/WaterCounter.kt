@@ -59,3 +59,29 @@ fun WaterCounter(modifier: Modifier = Modifier) {
         }
     }
 }
+
+/**
+ * Step9. State Hoisting
+ */
+@Composable
+fun StatelessCounter(
+    count: Int, onIncrement: () -> Unit, modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier.padding(16.dp)) {
+        if (count > 0) {
+            Text("You've had $count glasses.")
+        }
+        Button(
+            onClick = onIncrement,
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text(text = "Add One")
+        }
+    }
+}
+
+@Composable
+fun StatefulCounter(modifier: Modifier = Modifier) {
+    var count by rememberSaveable { mutableStateOf(0) }
+    StatelessCounter(count = count, onIncrement = { count++ }, modifier)
+}
