@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -19,11 +20,14 @@ import androidx.compose.ui.unit.dp
 /**
  * Step7. Remember in Composition
  * showTask는 clear했다가 add하면 count가 올라갈 때 Recomposition되면서 다시 true로 지정됨
+ *
+ * Step8. Restore state in Compose
+ * rememberSaveable은 Config Change에도 State를 유지한다.
  */
 @Composable
 fun WaterCounter(modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(16.dp)) {
-        var count by remember { mutableStateOf(0) }
+        var count by rememberSaveable { mutableStateOf(0) }
         Log.e("Count", count.toString())
         if (count > 0) {
 //            var showTask by remember { mutableStateOf(true) }
