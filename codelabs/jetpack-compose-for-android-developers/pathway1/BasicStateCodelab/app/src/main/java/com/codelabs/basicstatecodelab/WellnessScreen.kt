@@ -2,6 +2,8 @@ package com.codelabs.basicstatecodelab
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 
 /**
@@ -13,6 +15,8 @@ import androidx.compose.ui.Modifier
 fun WellnessScreen(modifier: Modifier = Modifier) {
     Column {
         StatefulCounter(modifier = modifier)
-        WellnessTaskList()
+
+        val list = remember { getFakeWellnessTask().toMutableStateList() } // remove되면 recomposition 발
+        WellnessTaskList(list = list, onCloseTask = { task -> list.remove(task)})
     }
 }

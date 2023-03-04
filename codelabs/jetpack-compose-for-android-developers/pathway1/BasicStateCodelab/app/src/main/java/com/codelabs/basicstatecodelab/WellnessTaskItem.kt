@@ -59,7 +59,8 @@ fun WellnessTaskItem(
 @Composable
 fun WellnessTaskItem(
     taskName: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCloseTask: () -> Unit
 ) {
     // Scroll 상태 유지를 위해 rememberSaveable
     var checkedState by rememberSaveable { mutableStateOf(false) }
@@ -68,7 +69,7 @@ fun WellnessTaskItem(
         taskName = taskName,
         checked = checkedState,
         onCheckChange = { newState -> checkedState = newState },
-        onClose = { },
+        onClose = onCloseTask,
         modifier = modifier
     )
 }

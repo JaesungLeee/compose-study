@@ -1,6 +1,7 @@
 package com.codelabs.basicstatecodelab
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.codelabs.basicstatecodelab.ui.theme.BasicStateCodelabTheme
 
@@ -29,7 +30,7 @@ fun WellnessScreenPreview() {
 @Composable
 fun WellnessTaskItemPreview() {
     BasicStateCodelabTheme {
-        WellnessTaskItem(taskName = "This is task")
+        WellnessTaskItem(taskName = "This is task", modifier = Modifier, onCloseTask = {})
     }
 }
 
@@ -37,6 +38,6 @@ fun WellnessTaskItemPreview() {
 @Composable
 fun WellnessTaskListPreview() {
     BasicStateCodelabTheme {
-        WellnessTaskList()
+        WellnessTaskList(list = emptyList(), onCloseTask = {})
     }
 }

@@ -12,16 +12,25 @@ import androidx.compose.ui.Modifier
  * @created 2023/03/05
  */
 
-private fun getFakeWellnessTask() = List(30) { WellnessTask(id = it, label = "Task #$it")}
+fun getFakeWellnessTask() = List(30) { WellnessTask(id = it, label = "Task #$it") }
 
 @Composable
 fun WellnessTaskList(
     modifier: Modifier = Modifier,
-    list: List<WellnessTask> = remember { getFakeWellnessTask() }
+    list: List<WellnessTask>,
+    onCloseTask: (WellnessTask) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
-        items(list) { task ->
-            WellnessTaskItem(taskName = task.label)
+        items(
+            items = list,
+            key = { task -> task.id }
+        ) { task ->
+            WellnessTaskItem(
+                taskName = task.label,
+                onCloseTask = {
+                    onCloseTask(task)
+                }
+            )
         }
     }
 }
