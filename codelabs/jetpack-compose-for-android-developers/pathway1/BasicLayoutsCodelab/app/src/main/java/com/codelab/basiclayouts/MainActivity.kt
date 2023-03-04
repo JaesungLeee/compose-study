@@ -32,7 +32,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,6 +46,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -229,10 +233,38 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 }
 
-// Step: Bottom navigation - Material
+/**
+ * Step11. Bottom navigation - Material
+ * M3에서는 NavigationBar - NavigationBarItem
+ * M2는 BottomNavigation - BottomNavigationItem
+ */
 @Composable
 fun SootheBottomNavigation(modifier: Modifier = Modifier) {
-    // Implement composable here
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.background,
+        modifier = modifier
+    ) {
+        NavigationBarItem(
+            icon = {
+                Icon(imageVector = Icons.Default.Spa, contentDescription = null)
+            },
+            label = {
+                Text(text = stringResource(id = R.string.bottom_navigation_home))
+            },
+            selected = true,
+            onClick = { /*TODO*/ }
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(imageVector = Icons.Default.AccountCircle, contentDescription = null)
+            },
+            label = {
+                Text(text = stringResource(id = R.string.bottom_navigation_profile))
+            },
+            selected = false,
+            onClick = { /*TODO*/ }
+        )
+    }
 }
 
 // Step: MySoothe App - Scaffold
