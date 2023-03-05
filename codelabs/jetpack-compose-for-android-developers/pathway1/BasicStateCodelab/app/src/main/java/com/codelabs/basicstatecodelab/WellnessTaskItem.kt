@@ -31,7 +31,7 @@ fun WellnessTaskItem(
     taskName: String,
     checked: Boolean,
     onCheckChange: (Boolean) -> Unit,
-    onClose: () -> Unit,
+    onCloseTask: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -45,7 +45,7 @@ fun WellnessTaskItem(
                 .padding(start = 16.dp)
         )
         Checkbox(checked = checked, onCheckedChange = onCheckChange)
-        IconButton(onClick = onClose) {
+        IconButton(onClick = onCloseTask) {
             Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
         }
     }
@@ -56,20 +56,22 @@ fun WellnessTaskItem(
  * Stateful한 Composable에서 Stateless한 Composable로 상태를 내려주는 것을 통해 State Hoisting 적용
  * Stateful 안에 Stateless
  */
-@Composable
-fun WellnessTaskItem(
-    taskName: String,
-    modifier: Modifier = Modifier,
-    onCloseTask: () -> Unit
-) {
-    // Scroll 상태 유지를 위해 rememberSaveable
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-
-    WellnessTaskItem(
-        taskName = taskName,
-        checked = checkedState,
-        onCheckChange = { newState -> checkedState = newState },
-        onClose = onCloseTask,
-        modifier = modifier
-    )
-}
+//@Composable
+//fun WellnessTaskItem(
+//    taskName: String,
+//    checkState: Boolean,
+//    onCheckChange: (Boolean) -> Unit,
+//    onCloseTask: () -> Unit,
+//    modifier: Modifier = Modifier,
+//) {
+//    // Scroll 상태 유지를 위해 rememberSaveable
+//    var checkedState by rememberSaveable { mutableStateOf(false) }
+//
+//    WellnessTaskItem(
+//        taskName = taskName,
+//        checked = checkState,
+//        onCheckChange = onCheckChange,
+//        onClose = onCloseTask,
+//        modifier = modifier
+//    )
+//}

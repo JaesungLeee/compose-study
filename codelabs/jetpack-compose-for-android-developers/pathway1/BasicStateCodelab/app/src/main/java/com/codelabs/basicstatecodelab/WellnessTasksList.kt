@@ -12,12 +12,11 @@ import androidx.compose.ui.Modifier
  * @created 2023/03/05
  */
 
-fun getFakeWellnessTask() = List(30) { WellnessTask(id = it, label = "Task #$it") }
-
 @Composable
 fun WellnessTaskList(
     modifier: Modifier = Modifier,
     list: List<WellnessTask>,
+    onCheckedTask: (WellnessTask, Boolean) -> Unit,
     onCloseTask: (WellnessTask) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
@@ -27,6 +26,8 @@ fun WellnessTaskList(
         ) { task ->
             WellnessTaskItem(
                 taskName = task.label,
+                checked = task.checked,
+                onCheckChange = { checked -> onCheckedTask(task, checked) },
                 onCloseTask = {
                     onCloseTask(task)
                 }

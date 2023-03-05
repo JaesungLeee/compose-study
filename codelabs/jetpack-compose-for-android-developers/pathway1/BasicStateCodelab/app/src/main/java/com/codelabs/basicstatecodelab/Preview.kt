@@ -30,7 +30,7 @@ fun WellnessScreenPreview() {
 @Composable
 fun WellnessTaskItemPreview() {
     BasicStateCodelabTheme {
-        WellnessTaskItem(taskName = "This is task", modifier = Modifier, onCloseTask = {})
+        WellnessTaskItem(taskName = "This is task", modifier = Modifier, onCloseTask = {}, checked = false, onCheckChange = {})
     }
 }
 
@@ -38,6 +38,6 @@ fun WellnessTaskItemPreview() {
 @Composable
 fun WellnessTaskListPreview() {
     BasicStateCodelabTheme {
-        WellnessTaskList(list = emptyList(), onCloseTask = {})
+        WellnessTaskList(list = emptyList(), onCloseTask = {}, onCheckedTask = { task, checked ->  })
     }
 }
