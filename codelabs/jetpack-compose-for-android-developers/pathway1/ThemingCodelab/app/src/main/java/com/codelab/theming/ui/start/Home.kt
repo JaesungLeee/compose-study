@@ -203,25 +203,3 @@ fun PostItem(
         }
     )
 }
-
-@Preview("Post Item")
-@Composable
-private fun PostItemPreview() {
-    val post = remember { PostRepo.getFeaturedPost() }
-    Surface {
-        PostItem(post = post)
-    }
-}
-
-@Preview("Featured Post")
-@Composable
-private fun FeaturedPostPreview() {
-    val post = remember { PostRepo.getFeaturedPost() }
-    FeaturedPost(post = post)
-}
-
-@Preview("Home")
-@Composable
-private fun HomePreview() {
-    Home()
-}
