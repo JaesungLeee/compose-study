@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.codelab.theming.data.PostRepo
+import com.codelab.theming.ui.start.theme.JetNewsTheme
 
 /**
  * ComposeTheming
@@ -24,9 +25,19 @@ private fun PostItemPreview() {
 @Composable
 private fun FeaturedPostPreview() {
     val post = remember { PostRepo.getFeaturedPost() }
-    FeaturedPost(post = post)
+    JetNewsTheme {
+        FeaturedPost(post = post)
+    }
 }
 
+@Preview
+@Composable
+private fun FeaturedPostDarkPreview() {
+    val post = remember { PostRepo.getFeaturedPost() }
+    JetNewsTheme(darkTheme = true) {
+        FeaturedPost(post = post)
+    }
+}
 @Preview("Home")
 @Composable
 private fun HomePreview() {
