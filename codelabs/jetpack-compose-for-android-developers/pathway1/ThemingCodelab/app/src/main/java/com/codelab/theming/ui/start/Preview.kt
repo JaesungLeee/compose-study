@@ -16,8 +16,10 @@ import com.codelab.theming.ui.start.theme.JetNewsTheme
 @Composable
 private fun PostItemPreview() {
     val post = remember { PostRepo.getFeaturedPost() }
-    Surface {
-        PostItem(post = post)
+    JetNewsTheme {
+        Surface {
+            PostItem(post = post)
+        }
     }
 }
 
