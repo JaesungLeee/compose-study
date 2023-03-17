@@ -71,3 +71,11 @@ fun LayoutWeightComposablePreview() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun ColumnComposablePreview() {
+    ModifierPracticeTheme {
+        ColumnComposable()
+    }
+}
+

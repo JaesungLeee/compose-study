@@ -1,9 +1,9 @@
 package com.jslee.modifierpractice
 
 import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
@@ -49,6 +49,7 @@ fun ArtistCard(modifier: Modifier = Modifier) {
         modifier
             .padding(padding)
             .clickable(onClick = { })
+            .padding(padding)
             .fillMaxWidth()
     ) {
         ArtistInfo(modifier)
@@ -103,9 +104,11 @@ fun LayoutWeightComposable() {
         .background(Color.DarkGray)
         .padding(24.dp)
 
-    Row(modifier = Modifier.fillMaxWidth().clickable {
-        Log.d("Tag", baseModifier.toString())
-    }) {
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            Log.d("Tag", baseModifier.toString())
+        }) {
         Text(
             text = "AAA",
             modifier = baseModifier.weight(2f)
@@ -114,5 +117,31 @@ fun LayoutWeightComposable() {
             text = "BBB",
             modifier = baseModifier.weight(3f)
         )
+    }
+}
+
+
+@Composable
+fun ColumnComposable() {
+    val scrollState = rememberScrollState()
+    Column() {
+        val reusableItemModifier = Modifier.weight(1f)
+
+        Text(
+            modifier = reusableItemModifier,
+            text = "BBB"
+        )
+
+        Column(modifier = reusableItemModifier) {
+            Text(
+                modifier = reusableItemModifier,
+                text = "dasdfasdf"
+            )
+
+            Text(
+                modifier = reusableItemModifier,
+                text = "aaaaaaaa"
+            )
+        }
     }
 }
